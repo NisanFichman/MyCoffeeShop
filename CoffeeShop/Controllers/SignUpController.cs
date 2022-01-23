@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CoffeeShop.Dal;
 using CoffeeShop.Models;
 using CoffeeShop.ViewModels;
 
@@ -15,8 +16,28 @@ namespace CoffeeShop.Controllers
     {
         private CoffeeShopEntities db = new CoffeeShopEntities();
 
-        // GET: SignUp
-        public ActionResult Index()
+        public ActionResult Enter()
+        {
+            return View(new User());
+        }
+
+        [HttpPost]
+
+        public ActionResult SignUp(User u1)
+        {
+
+            if (ModelState.IsValid)
+            {
+                SignUpDal dal = new SignUpDal();
+                db.Users.Add(u1);
+                db.SaveChanges();
+                return View("Details");
+            }
+
+            return View("Enter", u1);
+        }
+            // GET: SignUp
+            public ActionResult Index()
         {
             return View(db.Users.ToList());
         }

@@ -28,8 +28,18 @@ namespace CoffeeShop
             routes.MapRoute(
                 name: "SignUp",
                 url: "Home/SignUp",
-                defaults: new { controller = "SignUp", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "SignUp", action = "Enter", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+               name: "SignUp1",
+               url: "SignUp",
+               defaults: new { controller = "SignUp", action = "Enter", id = UrlParameter.Optional }
+           );
+            routes.MapRoute(
+              name: "SignUp2",
+              url: "SignUp/Enter",
+              defaults: new { controller = "SignUp", action = "Enter", id = UrlParameter.Optional }
+          );
 
             routes.MapRoute(
                 name: "Login",
